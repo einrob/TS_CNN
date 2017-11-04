@@ -12,10 +12,10 @@
 
 ## Step 0: Load The Data from a python pickle 
 
-For every image there exists a corresponding answer, what kind of traffic sign this image represent. Udacity provided us with a preselected train, test and validation dataset so we do not have to think about, how to split the original dataset into meaningful subsets to each task. 
+For every image there exists a corresponding answer, what kind of traffic sign this image represents. Udacity provided us with a preselected train, test and validation dataset so we do not have to think about, how to split the original dataset into meaningful subsets to each task. 
 
-Statistically seen all of our data present is the population and we are taking samples of the population to estimate the correlation between features and classes. The problem is that the sample does not have to reflect the statistical correlations of features and classes as it is in the population. Learned patterns that fit the traing set well may not be as strong when applied to the population. Thats why we need an independet test set to estimate the accuracy of the trained model on the whole population. 
-When the patterns learned by the NN only work well on the training data it will not perform good on the popluation. This effect is called overfitting and is always a danger and have to be observed, when a NN is built and trained. We want that our calssifier is good generalized so that it apply to the population well. 
+Statistically seen all of our data is the population and we are taking samples of the population to estimate the correlation between features and classes. The problem is that the sample does not have to reflect the statistical correlations of features and classes as it is in the population. Learned patterns that fit the training set well may not be as strong when applied to the population. Thats why we need an independet test set to estimate the accuracy of the trained model on the whole population. 
+When the patterns learned by the NN only work well on the training data it will not perform good on the popluation. This effect is called overfitting and is always a danger and has to be observed, when a NN is built and trained. We want that our classifier is good generalized so that it will apply to the population well. 
 
 ## Training Dataset 
 All images (features) used to train (FIT) parameters of the NN. The neurons are going to "learn" on this dataset, which image represents which class of the 43 traffic sign classes (target vector). At the end of each epoch, the result of the NN is going to be compared with the target vector using a cost function to determine the "correctness" of the NN guess. Then the weights and biases are adjusted using backpropagation in order to minimize the error between the NN guess and the target vector -> the correct answer -> using methods like gradient descend. 
@@ -24,7 +24,7 @@ All images (features) used to train (FIT) parameters of the NN. The neurons are 
 The validation set is a set of features and a target vector, which is used to prevent the network to overfit on the training data set. It is used to measure the actual error. The validation set can also "bleed" into the weights of the network, so it may overfit on the validation set too. That why we need a test data set.     
 
 ## Test Dataset 
-This is an unbiased set of features and target vector used to evaluate the final model fit. It should be kept under disclosure till the model is fully trained and have to be independent from booth TRAINING and VALIDATION set. It is used to assess the performance of the network in terms of generalization and predictive power. 
+This is an unbiased set of features and target vector used to evaluate the final model fit. It should be kept under disclosure till the model is fully trained and has to be independent from booth TRAINING and VALIDATION set. It is used to assess the performance of the network in terms of generalization and predictive power. 
 
 http://cseweb.ucsd.edu/~elkan/250Bwinter2011/classifiereval.pdf
 
@@ -38,7 +38,7 @@ https://www.youtube.com/watch?v=GUtlrDbHhJM
 
 ## CS231 Winter Course 2016 
 
-I highly recomend the Stanford University CS231n course on Convolutional Neural Networks for Visual Recognition: 
+I highly recommend the Stanford University CS231n course on Convolutional Neural Networks for Visual Recognition: 
 
 http://cs231n.stanford.edu/ 
 
@@ -278,7 +278,7 @@ plt.imshow(I_blue)
 
 
 ## Exploratory Visualization
-Maybe it would be interesting to know, how many samples of a traffic sign class is present in the training data. This could show us, if some of the traffic signs are underrepresented in the training set which may lead to biased classification results thowards the strong classes. 
+Maybe it would be interesting to know, how many samples of a traffic sign class are present in the training data. This could show us, if some of the traffic signs are underrepresented in the training set which may lead to biased classification results towards the strong classes. 
 
 
 ```python
@@ -340,9 +340,9 @@ The pickled data is a dictionary with 4 key/value pairs:
 
 ### Data augmentation 
 
-- The histogram of images per present classes show that some classes have more samples than other classes, which can lead to biased training results thowards thestrong class 
+- The histogram of images per present classes show that some classes have more samples than other classes, which can lead to biased training results towards the strong classes 
 - The database is not very large 
-- It would be advisable to generate some agumented data to balance the image classes 
+- It would be advisable to generate some augmented data to balance the image classes 
 - Also mentioned in Lecture 11 of CS231 as very widely used approach to enhance the database 
 - Large datasets are preprocessed image by image in the pipeline, we can preprocess our small dataset in advance because it does not use that much disk/memory space 
 
@@ -351,30 +351,30 @@ https://youtu.be/pA4BsUK3oP4?t=321
 
 
 #### Sidenote: What is a python pickle? 
-A pickle is used for serializing and de-serializing a Python object structure. In our case it serializes our image data and calssification list into a stream of characters. This character stream contains everything to reconstruct the objects in another python scripts, including the structures used (list, dict, etc.)
+A pickle is used for serializing and de-serializing a Python object structure. In our case it serializes our image data and classification list into a stream of characters. This character stream contains everything to reconstruct the objects in another python scripts, including the structures used (list, dict, etc.)
 
 # Preprocessing of the data 
 
-I chose only to zero mean the pixel values of the images between [-1,1]. This is proposed by the udacity and cs231 course. 
+I choose only to zero mean the pixel values of the images between [-1,1]. This is proposed by the udacity and cs231 course. 
 
 I decided against grayscale convertion and further image processing because it does seem to work well with 3-channel images too according to the paper:
 http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
-And converting to grayscale images immproved the accuracy from 98.97% to 99.17% which was a new record.
+It states that converting to grayscale images immproved the accuracy from 98.97% to 99.17% which was a new record. 
 
-I am going to try improve the test accuracy with further image processing if any time is left at till submission.  
+I am going to try to improve the test accuracy with further image processing if any time is left till submission.  
 
 
 I decided to follow the proposals made in the CS231 Course neural-networks-2: 
 http://cs231n.github.io/neural-networks-2/
 
-Following are citations from the couse: 
+Following are citations from the course: 
 
-"In images is not as common to normalize data, because you dont have seperate different features that can at different units  everything is just pixels and they are bounded between 0 255 so it not as common to normalize the data, but its common to zero center your data" - Andrej Karpathy 
+"In images is not as common to normalize data, because you don't have to separate different features that can be at different units  everything is just pixels and they are bounded between 0 and 255 so it not as common to normalize the data, but it's common to zero center your data" - Andrej Karpathy 
 https://youtu.be/gYpoJMlgyXA?t=2066
 
 #### Comment on Center Image Data: 
 
-"In images specifically whats common is just a mean centering and then a particular variant of mean centering that is slightly more convinient in practice. ..... If you want to center your data then for every single pixel you comput its mean value over the TRAINING SET and you substract that out - so what you end up is this mean image with dimensions of 32x32x3 ... so you end up substracting that from every single image to center your data to have better training dynamics. And one other form that is slightly more convinient is substracting a per channel mean. So you go in red green blue channel and compute to the mean across all of space. so you just end up with basically three numbers of the means of the red green and blue channels ... This one is more convinient because you only have to care about those three numbers you dont have to worry about a giant array of mean image that you have to ship arround everywhere when you coding this up. ... <b>Just basically substract the mean in CV applications things dont get much more complex than that </b>" - Andrej Karpathy 
+"In images specifically whats common is just a mean centering and then a particular variant of mean centering that is slightly more convinient in practice. ..... If you want to center your data then for every single pixel you compute it's mean value over the TRAINING SET and you substract that out - so what you end up is this mean image with dimensions of 32x32x3 ... so you end up substracting that from every single image to center your data to have better training dynamics. And one other form that is slightly more convinient is substracting a per channel mean. So you go in red green blue channel and compute to the mean across all of space. so you just end up with basically three numbers of the means of the red green and blue channels ... This one is more convinient because you only have to care about those three numbers you dont have to worry about a giant array of mean image that you have to ship arround everywhere when you coding this up. ... <b>Just basically substract the mean in CV applications things dont get much more complex than that </b>" - Andrej Karpathy 
 https://youtu.be/gYpoJMlgyXA?t=2120
 
 #### Comment on Whitening / PCA on images: 
@@ -391,7 +391,7 @@ Following the proposal of <b>Lesson 6: Introduction to TensorFlow 23.Normalized 
 
 ## Performing some experiments with the data 
 
-Some experiments to get a grip of how to handle the data structures in python. How do the operations - and / operate on data structures with multiple channels. Does it make a difference if I pool out each channel independently or can I perform these operations on the whole data structure at once? 
+Some experiments to get a grip of how to handle the data structures in python. How to do the operations - and / operate on data structures with multiple channels. Does it make a difference if I pool out each channel independently or can I perform these operations on the whole data structure at once? 
 
 
 
@@ -703,7 +703,7 @@ print("std ", standard_dev)
 ## Proposed data normalization methods 
 
 ### Udacity CS231 proposed preprocessing 
-The proposal of Udacity approach maps the image interval [0,255] to the interval of [-1, 1] using 
+The proposal of Udacity maps the image interval [0,255] to the interval of [-1, 1] using 
 
 a + ((val-data_min)*(b-a)) / (data_max - data_min)
 
@@ -727,7 +727,7 @@ For 128:
 -1 +  256 / 255 <br>
 -1 + ~1 = 0 <br><br>
 
-Image statistic all three channels after each channel handled seperately - UDACITY PROPOSAL
+Image statistic all three channels after each channel handled separately - UDACITY PROPOSAL
 
 <b>mean  -1.85037170771e-17
 
@@ -738,7 +738,7 @@ std  1.0</b>
 
 Whereas the CS231 proposal is actually calculating the mean of each channel, substacting it from each pixel value and dividing each pixel by the standard deviation.  
 
-Image statistic all three channels after each channel handled seperately - CS231 PROPOSAL
+Image statistic all three channels after each channel handled separately - CS231 PROPOSAL
 
 <b>mean  -1.85037170771e-17
 
@@ -748,7 +748,7 @@ std  1.0</b>
 ### Conclusion 
 
 - The two proposals are equivalent 
-- I think it does matter that each channel is normalized seperately so I am going to zero mean each channel independetly 
+- I think it does matter that each channel is normalized separately so I am going to zero mean each channel independetly 
 
 ## Defining a normalization function based on my findings 
 
@@ -844,13 +844,13 @@ X_validation = X_validation_normalized
 
 # Model Architecture
 
-I choose to start my experiments using the adapted LeNet architecture built in Udacity course as a basis. I reshaped input layer and first convolutional layer so that it accepts a 32x32x3.
+I chose to start my experiments using the adapted LeNet5 architecture built in Udacity course as a basis. I reshaped input layer and first convolutional layer so that it accepts a 32x32x3.
 
-As suggested by Udacity I followed the paper of Pierre Sermanent and Yann LeCun "Traffic Sign Recognition with Multi-Scale Convolutional Networks" to build a new architecture to . The main finding of this paper is that incorporating branched out data from Stage 1 (skipping Stage 2) into the final classifier improves the classification results. 
+As suggested by Udacity I followed the paper of Pierre Sermanent and Yann LeCun "Traffic Sign Recognition with Multi-Scale Convolutional Networks" to build a new architecture. The main finding of this paper is that incorporating branched out data from Stage 1 (skipping Stage 2) into the final classifier improves the classification results. 
 
 The paper states that the resulting accuracy using grayscale images is only slightly better than using color channel images, so I skipped this step. Also they added augmented data to the database to further improve accuracy, which I also had to skip. (mostly because of the lack of time). 
 
-The spatial filter sizes are mostly equivalent to the LeNet network but are deeper. I found that this is a good way to go.  
+The spatial filter sizes are mostly equivalent to the LeNet network but they are deeper. I found that this is a good way to go.  
 
 
 http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
@@ -1509,10 +1509,9 @@ with tf.Session() as sess:
 
 I tried to find some information about how to interpret the loss and accuracy curves. And what to do if my network is not learning well. 
 
-Found this useful post on stackoverflow: 
-https://stackoverflow.com/a/34519264
+I found this useful post on stackoverflow.
 
-The following are citations: 
+The following text is a citation from https://stackoverflow.com/a/34519264 : 
 
 ## Loss
 
@@ -1530,7 +1529,7 @@ For example, if the number of test samples is 1000 and model classifies 952 of t
 
 ## Udacity Forum 
 
-Also a big "thank you!" to subodh.malgonde for his useful posts on questions in the Udacity Forum! 
+Also a big "thank you!" to subodh.malgonde for his useful posts on questions in the Udacity Forum! Unfortunately these posts are only accessible for SDCNP members:
 
 https://discussions.udacity.com/t/number-of-epochs/228034/2?u=r.roessler
 
@@ -1621,7 +1620,7 @@ with tf.Session() as sess:
 
 ## Final results summary 
 
-All in all I struggelt with the accuracy of my ConvNets to meet the desired accuracy until I 
+All in all I struggled with the accuracy of my ConvNets to meet the desired accuracy until  
 
 - I fixed a minor bug using Tensorboard to "debug" my ConvNet
 - I added dropouts to my network in addition 
@@ -1653,20 +1652,20 @@ By using:
 I choose traffic signs with a very low sample size and some with a very high sample size in the database. I expect that some of the signs with low sample size are going to have problems to be classified. 
 
 <b>12 - priority road</b> 
-These sign is very significant because of its yellow color and diagonal edged and it is one of the signs with many samples in the database. I expect that this sign is classyfied correctly. 
+This sign is very significant because of its yellow color and diagonal edges and it is one of the signs with many samples in the database. I expect that this sign is classified correctly. 
 
 
 <b>14 - stop</b>
-The stop also consists of many edges in different directions. Additionally the text on the sign may give additional edge information, if it is not too small so that it disappears in the noise. Because it belongs to one of the smallest samples, I am curious if it is going to be calssified correctly.  
+The stop also consists of many edges in different directions. Additionally the text on the sign may give additional edge information, if it is not too small so that it disappears in the noise. Because it belongs to one of the smallest samples, I am curious if it is going to be classified correctly.  
 
 <b>15 - no vehicle</b>
-The no vehicle sign consist only of a red circle and belongs to the classes with the lowest sample size. I am expecting problems with the classification of this sign. 
+The no vehicle sign consists only of a red circle and belongs to the classes with the lowest sample size. I am expecting problems with the classification of this sign. 
 
 <b>17 - no entry</b>
-The no entry sign belongs to the round signs and is the only sign with a filled red background which could help the classification. Classification could be difficult because it has not very much useful edges except the white bar in the middle. Additionally it has one of the smalles sample sizes in the database. Classification may be difficult. 
+The no entry sign belongs to the round signs and is the only sign with a filled red background which could help the classification. Classification could be difficult because it has not very much useful edges except the white bar in the middle. Additionally it has one of the smallest sample sizes in the database. Classification maybe difficult. 
 
 <b>22 - bumpy road</b> 
-The bumpy road sign belongs to the signs with the "attention triangle" which represent multiple classes of the dataset. I am courious if it is going to be confused with some other "attention" traffic sign, because they differ only through the black pictorgram inside the triangle. It belongs to one of the biggest sample sizes in the database. 
+The bumpy road sign belongs to the signs with the "attention triangle" which represent multiple classes of the dataset. I am courious if it is going to be confused with some other "attention" traffic sign, because they differ only through the black pictogram inside the triangle. It belongs to one of the biggest sample sizes in the database. 
 
 <b>33 - turn right ahead</b> 
 Additionally I am using a blue sign with a small sample size in the database. Is it going to be confused with another blue class with higher samlpe size like the "Go straigt or left"? 
@@ -1875,7 +1874,7 @@ print("Predicted Signs: ", preditced_signs)
 
 ### Result
 
-Looking at the list of my choosen traffic signs
+Looking at the list of my chosen traffic signs
 
 - 12 - priority road 
 - 14 - stop
@@ -1907,7 +1906,7 @@ with tf.Session() as sess:
     Total Accuracy on new test set = 0.833
 
 
-With one false positive out of 6 image samples my network does not perform as well on my new images as on the train and validation set. 
+With one false positive out of 6 image samples my network does not perform as well on my new images as on the test and validation set. 
 
 ### Output Top 5 Softmax Probabilities For Each Image Found on the Web
 
@@ -1950,7 +1949,7 @@ print(signs_top_5)
            [42,  7, 35, 33, 10]], dtype=int32))
 
 
-As the first four signs are classfied with 100% probability I am only going to look at the last falsely classified sign: 
+As the first four signs are classified with 100% probability I am only going to look at the last falsely classified sign: 
  
 Looking at the vector 
 
@@ -1960,7 +1959,7 @@ Looking at the vector
 and 
  ....  [42,  7, 35, 33, 10]], dtype=int32))
  
-I can see that the classificatio probabilities are as follows: 
+I can see that the classification probabilities are as follows: 
 
 | Class         		|     Description    | Probability %  	        					| 
 |:-------:|:--------------------:|:-----------------:| 
@@ -1970,7 +1969,7 @@ I can see that the classificatio probabilities are as follows:
 | 33	  | Turn right ahead	| 1.18| 
 | 10	  | No passing for vehicles over 3.5 metric tons |0.08|
 
- There are at least 2 "blue signs" in the top 5 and one of them is the correct one. But the net ist pretty shure about the two non blue signs to be correct. At lest the shape of the classified signs are all round. 
+ There are at least 2 "blue signs" in the top 5 and one of them is the correct one. But the net is pretty sure about the two non blue signs to be correct. At least the shape of the top 5 classified signs are all round. 
  
  Class 42 has a fairly large sample set in the data base in contrast to the class 7 which is classified as second best. 
 
@@ -2026,7 +2025,7 @@ with tf.Session() as sess:
 ![png](output_41_0.png)
 
 
-I think my net is likes the diagonal edges of the "main road" traffic sign. Additionally the blob like feature maps e.g. 6, 12, 29 may correspond to the color of the traffic sign. 
+I think my net likes the diagonal edges of the "main road" traffic sign. Additionally the blob like feature maps e.g. 6, 12, 29 may correspond to the color of the traffic sign. 
 
 ---
 
@@ -2040,7 +2039,7 @@ I learned a lot about working with CNNs in this project and there is much more t
 - Trying Xavier initialization of weights
 - Try batch normalization 
 - Further experiments with different architectures 
-- Examine network performance like it is proposed by optional udacity task in respect to precision and recall performance 
-- Test automation using Tensorboard summarizer to be able to compare a lot of configurations and architecture changes like it is shown here https://youtu.be/eBbEDRsCmv4?t=834 which seems to be awesome  
+- Examine network performance like it is proposed by optional Udacity task in respect to precision and recall performance 
+- Test automation and use Tensorboard summarizer to be able to compare a lot of configurations and architecture changes like it is shown here https://youtu.be/eBbEDRsCmv4?t=834 which seems to be awesome!  
 
 
