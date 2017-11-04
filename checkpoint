@@ -1,2 +1,2 @@
-model_checkpoint_path: "LeCun2Stage"
-all_model_checkpoint_paths: "LeCun2Stage"
+model_checkpoint_path: "lenet"
+all_model_checkpoint_paths: "lenet"
